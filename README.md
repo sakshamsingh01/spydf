@@ -48,3 +48,6 @@ This python script depends upon **two libraries** to function.
 6. **From next run onwards, you do not need to set the path**
 
    ![ss4](screens/Step 4.png)  
+   
+### Contributions
+All types of contributions are WELCOME! Try this script, contribute if this helps you :-)
