@@ -47,4 +47,4 @@ This python script depends upon **two libraries** to function.
 
 6. **From next run onwards, you do not need to set the path**
 
-   ![ss4](screens/Step2_0.png)  
+   ![ss4](screens/Step4.png)  
