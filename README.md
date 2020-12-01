@@ -12,6 +12,12 @@ I have created **two versions** of this Program
 * Spydf_cli
 _(pretty self explanatory, right?)_
 
+### Pre-Requisite
+
+This python script depends upon **two libraries** to function.
+1. watchdog (*install: pip install watchdog*)
+2. pillow (*install: pip install pillow*)
+
 ### Instructions to use
 
 1. Clone this repo
@@ -21,5 +27,24 @@ _(pretty self explanatory, right?)_
 
 #### GUI Screens
 
-1. **First Run**
+1. **First Run**: Set the path to screenshots folder
+
+   ![ss0](screens/Step0.png)
    
+2. **Yeah browse it**:
+
+   ![ss1](screens/Step1.png)   
+
+3. **Path successfully set! You're good to go**:
+
+   ![ss2](screens/Step2.png) 
+   
+4. **Click START and the script will start running**:
+
+   ![ss3](screens/Step3.png)   
+
+5. **After taking your screenshots, press stop, program will exit and you will find your PDF in the folder from where SPYDF was executed.**
+
+6. **From next run onwards, you do not need to set the path**
+
+   ![ss4](screens/Step2_0.png)  
