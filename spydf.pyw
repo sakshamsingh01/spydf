@@ -4,6 +4,7 @@ import spydf_gui
 import threading
 import config
 import importlib
+import sys
 
 def main():
     def update(text):
@@ -14,7 +15,7 @@ def main():
         with open ("spydf_path.txt", "w") as file:
             file.write(path)
         importlib.reload(config)        
-        update(f"Path Set: {path}")
+        update(f"Path Set: {path}")     
 
     def start():        
         t2 = threading.Thread(target=spydf_gui.startprog) 
@@ -27,11 +28,8 @@ def main():
     
     def stop():
         spydf_gui.running = False
-        importlib.reload(config)
-        exit(0)
+        sys.exit(0)
         
-
-
     #gui
     root = Tk()
 
@@ -49,8 +47,13 @@ def main():
     #Title
     f1 = Frame(root)
     l1 = Label(f1, text = "SPYDF", font = "arialblack 20 bold")
+    Label(f1, text = "v2.0", anchor = "w").pack(side="right")
     f1.pack()
     l1.pack(fill = "x", pady = 10)
+
+    Label(root, text = "Note 1. Set the path if running first time.", font = "arial 10", anchor="w").pack(fill = "x", padx = 10)
+    Label(root, text = "Note 2. Output Folder: Documents\\spydf\\", font = "arial 10", anchor="w").pack(fill = "x", padx = 10)
+    Label(root, text = "Now just click start and take screenshots (Win+PrScr)", font = "arial 10", anchor="w").pack(fill = "x", padx = 10)
 
     #bottombar
     f2 = Frame(root, bg = "green", height = 20)
@@ -75,6 +78,7 @@ def main():
     b3 = Button(f5, text = "Stop", font = "bold",bd = 1, width = 10, height = 1, command = lambda:stop())
     f5.pack(side = "left", anchor = "n", padx = 10)
     b3.pack(pady = 10)
+
 
     root.mainloop()
     #gui end

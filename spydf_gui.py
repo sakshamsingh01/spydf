@@ -2,27 +2,30 @@ import os
 import time 
 import config
 import importlib
+import watchdog.events   
+import watchdog.observers
+from PIL import Image
+import ctypes.wintypes
+
+#to get user's documents path
+CSIDL_PERSONAL = 5      
+SHGFP_TYPE_CURRENT = 0   
+
+buf= ctypes.create_unicode_buffer(ctypes.wintypes.MAX_PATH)
+ctypes.windll.shell32.SHGetFolderPathW(None, CSIDL_PERSONAL, None, SHGFP_TYPE_CURRENT, buf)
+
+path = buf.value.replace("/", "\\") +"\\"+"spydf"
+
+if not os.path.exists(path):
+    os.mkdir(path)
 
 running = True
 
 def startprog():
 
     if config.src_path is None:
-        print("path not found")
         config.error = "path not found"
         exit(1)
-
-    try:
-        import watchdog.events    
-        import watchdog.observers
-    except:
-        config.error = "ERROR: Dependancy not installed. Please run PIP Install watchdog"
-        exit(1)    
-    try:
-        from PIL import Image 
-    except:
-        config.error = "ERROR: Dependancy not installed. Please run PIP Install pillow"
-        exit(1)     
 
     imagelist = list()
 
@@ -30,9 +33,7 @@ def startprog():
         def __init__(self): 
             watchdog.events.PatternMatchingEventHandler.__init__(self, patterns=['*.jpg', '*.png'], ignore_directories=True, case_sensitive=False) 
     
-        def on_created(self, event): 
-            print("Received Screenshot - % s." % event.src_path) 
-
+        def on_created(self, event):  
             filepath = str(event.src_path)
             try:
                 image = Image.open(filepath, mode="r").convert("RGB")
@@ -50,20 +51,13 @@ def startprog():
     if running is False: 
         observer.stop() 
         if len(imagelist) == 0:
-            config.message = "No images received!"
-            print("No images received!")
             exit(0)
         img1 = imagelist[0]    
         if len(imagelist) == 1:
-            img1.save(r"spydf_{time}.pdf".format(time = time.strftime("%H_%M_%S", time.localtime())))
-            config.message = "PDF succesfully created!"
-            print("PDF succesfully created!")
+            img1.save(r"{destination}\spydf_{time}.pdf".format(time = time.strftime("%H_%M_%S", time.localtime())), destination=path.replace("/", "\\"))
             exit(0)  
         elif len(imagelist) > 1:  
             imagelist.pop(0)
-            img1.save(r"spydf_{time}.pdf".format(time = time.strftime("%H_%M_%S", time.localtime())), save_all = True, append_images=imagelist)
-            print("PDF succesfully created!")
-            config.message = "PDF succesfully created!"
+            img1.save(r"{}\spydf_{}.pdf".format(path, time.strftime("%H_%M_%S", time.localtime())), save_all = True, append_images=imagelist)
             exit(0) 
-    config.running = True
     exit(0)     
