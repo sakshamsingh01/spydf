@@ -7,23 +7,17 @@ Habbit of taking numerous screenshots while doing something and never opening th
 Presenting **SPYDF**,
 a python program which will automatically create a pdf of your captured screenshots so you don't have to manage them again and again.
 
-I have created **two versions** of this Program
-* Spydf
-* Spydf_cli
-_(pretty self explanatory, right?)_
-
 ### Pre-Requisite
 
-This python script depends upon **two libraries** to function.
-1. watchdog (*install: pip install watchdog*)
-2. pillow (*install: pip install pillow*)
+NOTHING :)
 
-### Instructions to use
+Just download the setup and intsall
+
+### Instructions to contribute
 
 1. Clone this repo
-2. Go to spydf folder (**important**: all files are necessary for the program to run)
-3. Either run **spydf.pyw** normally or **spydf_cli.py** through interpreter.
-4. On first run, program will ask for the path to screenshots folder of your OS (*you know it, right?*)
+2. Explore the code and improove it if you like :)
+3. Submit a PR by making a new branch
 
 #### GUI Screens
 
