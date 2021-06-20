@@ -17,7 +17,7 @@ Just download the setup and intsall
 ### Instructions to contribute
 
 1. Clone this repo
-2. Explore the code and improove it if you like :)
+2. Explore the code and improve it if you like :)
 3. Submit a PR by making a new branch
 
 #### GUI Screens
